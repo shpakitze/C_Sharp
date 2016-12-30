@@ -1,0 +1,9 @@
+﻿<Window x:Class="ChatClient.ConnectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ConnectWindow" Height="107.463" Width="258.209" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <TextBox x:Name="UserNameTexBox" Margin="50,1,44,1" Padding="1" VerticalAlignment="Top"/>
+        <Button Content="connect" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="1" Padding="1" Click="Button_Click"/>
+    </Grid>
+</Window>
