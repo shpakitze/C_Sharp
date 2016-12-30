@@ -67,3 +67,7 @@ bld/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.mdf
+*.ldf
+*bank_map/packages/*.*
+
