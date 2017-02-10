@@ -1,0 +1,15 @@
+﻿<Window x:Class="regAutorun.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <ListView ItemsSource="{Binding autoruns}"  x:Name="prog" MouseDoubleClick="prog_MouseDoubleClick" MouseRightButtonDown="prog_MouseRightButtonDown">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}">name</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Value}">path</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
