@@ -16,6 +16,8 @@ using System.IO;
 using System.Design;
 using System.ComponentModel;
 using System.ComponentModel.Design;
+using System.Diagnostics;
+
 namespace SimpleExplorer
 {
     /// <summary>
@@ -28,6 +30,7 @@ namespace SimpleExplorer
             InitializeComponent();
             InitStartDir(LeftDirPanel);
             InitStartDir(RightDirPanel);
+            
         }
         private void InitStartDir(ListBox lb)
         {
@@ -95,14 +98,19 @@ namespace SimpleExplorer
 
         private void FilePanel_LostFocus(object sender, RoutedEventArgs e)
         {
-            ((ListBox)sender).SelectedIndex = -1;
+            //((ListBox)sender).SelectedIndex = -1;
 
         }
 
         private void CopyButton_Click(object sender, RoutedEventArgs e)
         {
             
-
+            //MessageBox.Show(LeftFilePanel.SelectedItem.ToString());
+            FileCopyProg fcp = new FileCopyProg(System.IO.Path.Combine(LeftCurrentPath.Content.ToString(), LeftFilePanel.SelectedItem.ToString()),
+                System.IO.Path.Combine(RigthCurrentPath.Content.ToString(), LeftFilePanel.SelectedItem.ToString()));
+            fcp.Show();
+            //FileCopy(System.IO.Path.Combine(LeftCurrentPath.Content.ToString(),LeftFilePanel.SelectedItem.ToString()),
+              //  System.IO.Path.Combine(RigthCurrentPath.Content.ToString(), LeftFilePanel.SelectedItem.ToString()));
         }
 
         private void LeftFilePanel_GotFocus(object sender, RoutedEventArgs e)
@@ -115,24 +123,25 @@ namespace SimpleExplorer
             LeftFilePanel.SelectedIndex = -1;
         }
 
-        private void FileCopy(string soursePath,string destPath)
+        private void FileCopy(string soursePath, string destPath)
         {
             //FileInfo currentFile = new FileInfo(soursePath,destPath);
+            FileCopier _filecopier = new FileCopier(soursePath,destPath);
 
-        
         }
         private void LoadHexForm(string file)
         {
             ByteViewer bv = new ByteViewer();
             bv.SetFile(file);
             HexWinForm hx = new HexWinForm();
+            bv.Dock = System.Windows.Forms.DockStyle.Fill;
             hx.Controls.Add(bv);
             hx.Show();
         }
 
         private void HexButton_Click(object sender, RoutedEventArgs e)
         {
-            LoadHexForm(System.IO.Path.Combine(LeftCurrentPath.Content.ToString(),LeftFilePanel.SelectedValue.ToString()));
+            LoadHexForm(System.IO.Path.Combine(LeftCurrentPath.Content.ToString(), LeftFilePanel.SelectedValue.ToString()));
         }
 
     }
